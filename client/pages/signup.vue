@@ -15,7 +15,7 @@
           color="csystem.btx"
           font-size="2xl"
           font-weight="semibold"
-          >Welcome back.</c-text
+          >Create a new account.</c-text
         >
         <c-input
           text-align="left"
@@ -38,14 +38,12 @@
         />
         <c-box text-align="center" mt="8">
           <c-button bg="csystem.btn" size="lg" box-shadow="sm">
-            <c-text color="csystem.btx">Sign In</c-text>
+            <c-text color="csystem.btx">Sign Up</c-text>
           </c-button>
         </c-box>
         <c-text mt="8">
           Already have an account? Then
-          <c-link as="nuxt-link" to="/signup" color="csystem.btn"
-            >Sign Up</c-link
-          >
+          <c-link as="nuxt-link" to="/" color="csystem.btn">Sign In</c-link>
           .
         </c-text>
       </c-box>

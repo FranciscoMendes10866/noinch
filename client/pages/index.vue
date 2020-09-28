@@ -18,21 +18,19 @@
           >Welcome back.</c-text
         >
         <c-input
-          text-align="left"
+          text-align="center"
           focus-border-color="csystem.strk"
-          type="text"
-          bg="csystem.hdl"
-          variant="filled"
+          type="email"
+          variant="flushed"
           placeholder="Type your email."
           size="lg"
         />
         <c-input
-          text-align="left"
+          text-align="center"
           focus-border-color="csystem.strk"
-          bg="csystem.hdl"
           mt="4"
-          type="text"
-          variant="filled"
+          type="password"
+          variant="flushed"
           placeholder="Type your password."
           size="lg"
         />
@@ -42,7 +40,7 @@
           </c-button>
         </c-box>
         <c-text mt="8">
-          Already have an account? Then
+          Don't have an account yet? Then
           <c-link as="nuxt-link" to="/signup" color="csystem.btn"
             >Sign Up</c-link
           >
@@ -59,7 +57,6 @@ import { CFlex, CBox, CInput, CButton, CText, CLink } from '@chakra-ui/vue'
 
 export default Vue.extend({
   name: 'SignIn',
-  inject: ['$chakraColorMode', '$toggleColorMode'],
   components: {
     CFlex,
     CBox,

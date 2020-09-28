@@ -18,21 +18,19 @@
           >Create a new account.</c-text
         >
         <c-input
-          text-align="left"
+          text-align="center"
           focus-border-color="csystem.strk"
-          type="text"
-          bg="csystem.hdl"
-          variant="filled"
+          type="email"
+          variant="flushed"
           placeholder="Type your email."
           size="lg"
         />
         <c-input
-          text-align="left"
+          text-align="center"
           focus-border-color="csystem.strk"
-          bg="csystem.hdl"
           mt="4"
-          type="text"
-          variant="filled"
+          type="password"
+          variant="flushed"
           placeholder="Type your password."
           size="lg"
         />
@@ -56,8 +54,7 @@ import Vue from 'vue'
 import { CFlex, CBox, CInput, CButton, CText, CLink } from '@chakra-ui/vue'
 
 export default Vue.extend({
-  name: 'SignIn',
-  inject: ['$chakraColorMode', '$toggleColorMode'],
+  name: 'SignUp',
   components: {
     CFlex,
     CBox,

@@ -44,6 +44,24 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
   ],
+  chakra: {
+    extendTheme: {
+      colors: {
+        csystem: {
+          bg: '#004643',
+          btn: '#f9bc60',
+          btx: '#001e1d',
+          hdl: '#fffffe',
+          p: '#abd1c6',
+          strk: '#001e1d',
+          snd: '#abd1c6',
+          thr: '#e16162',
+          hi: '#f9bc60',
+          mn: '#e8e4e6',
+        },
+      },
+    },
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},

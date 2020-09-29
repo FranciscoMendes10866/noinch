@@ -47,7 +47,6 @@ func Get(c *fiber.Ctx) error {
 	token := jwt.New(jwt.SigningMethodHS256)
 	// Set claims
 	claims := token.Claims.(jwt.MapClaims)
-	claims["email"] = user.Email
 	claims["id"] = user.ID
 	// Generate encoded token and send it as response.
 	loginToken, err := token.SignedString([]byte("024QwiCG0"))

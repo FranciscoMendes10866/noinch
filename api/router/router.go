@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/noinch-api/guards"
 	"github.com/noinch-api/handlers"
 )
 
@@ -11,6 +12,9 @@ func SetupRouter(app *fiber.App) {
 	api := app.Group("/api/v1")
 	// auth routes
 	auth := api.Group("/auth")
-	auth.Post("/create", handlers.Create)
-	auth.Post("/get", handlers.Get)
+	auth.Post("/create", handlers.CreateUser)
+	auth.Post("/get", handlers.GetUser)
+	// manager routes
+	manager := api.Group("/manager")
+	manager.Post("/create", guards.Protected(), handlers.CreateRecord)
 }

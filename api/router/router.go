@@ -12,9 +12,12 @@ func SetupRouter(app *fiber.App) {
 	api := app.Group("/api/v1")
 	// auth routes
 	auth := api.Group("/auth")
-	auth.Post("/create", handlers.CreateUser)
-	auth.Post("/get", handlers.GetUser)
+	auth.Post("/create", handlers.SignUp)
+	auth.Post("/get", handlers.SignIn)
 	// manager routes
 	manager := api.Group("/manager")
-	manager.Post("/create", guards.Protected(), handlers.CreateRecord)
+	manager.Get("/", guards.Protected(), handlers.GetRecords)
+	manager.Post("/", guards.Protected(), handlers.CreateRecord)
+	manager.Put("/:id", guards.Protected(), handlers.UpdateRecord)
+	manager.Delete("/:id", guards.Protected(), handlers.DeleteRecord)
 }

@@ -6,8 +6,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// CreateUser - create a new user handler
-func CreateUser(c *fiber.Ctx) error {
+// SignUp - create a new user handler
+func SignUp(c *fiber.Ctx) error {
 	// db connection
 	InitDatabase()
 	// gets the user input fields based on the model

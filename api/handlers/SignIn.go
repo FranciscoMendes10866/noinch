@@ -7,8 +7,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// GetUser - gets a single user
-func GetUser(c *fiber.Ctx) error {
+// SignIn - gets a single user
+func SignIn(c *fiber.Ctx) error {
 	// db connection
 	InitDatabase()
 	// database response object

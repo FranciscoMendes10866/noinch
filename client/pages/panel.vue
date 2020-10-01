@@ -16,51 +16,21 @@
         rounded="lg"
         box-shadow="lg"
       >
-        <!-- Header -->
-        <c-divider orientation="horizontal" />
-        <c-flex direction="row" justify="space-between">
-          <c-box>
-            <c-text color="csystem.hdl">Website</c-text>
-          </c-box>
-          <c-box ml="6">
-            <c-text color="csystem.hdl">Password</c-text>
-          </c-box>
-          <c-box ml="6">
-            <c-text color="csystem.hdl">🗑️</c-text>
-          </c-box>
-          <c-box ml="6">
-            <c-text color="csystem.hdl">✏️</c-text>
-          </c-box>
-        </c-flex>
-        <c-divider orientation="horizontal" />
-        <!-- End of the Header -->
-        <!--  -->
-        <!-- Content -->
-        <div>
-          <c-flex direction="row" justify="space-between" align="center" py="2">
-            <c-box>
-              <a href="" target="blank"
-                ><c-text color="csystem.pp">www.google.pt</c-text></a
-              >
-            </c-box>
-            <c-box ml="6">
-              <c-text color="csystem.pp">sadasdsaIY79</c-text>
-            </c-box>
-            <c-box ml="6">
-              <c-button bg="csystem.thr" color="csystem.btx" size="sm"
-                >Delete</c-button
-              >
-            </c-box>
-            <c-box ml="6">
-              <c-button bg="csystem.pp" color="csystem.btx" size="sm"
-                >Edit</c-button
-              >
-            </c-box>
-          </c-flex>
-          <c-divider orientation="horizontal" />
-        </div>
-        <!-- End of the Content -->
-        <c-button bg="csystem.btn" color="csystem.btx" mt="6">Logout</c-button>
+        <c-tabs variant="soft-rounded" variant-color="gray" align="center">
+          <c-tab-list>
+            <c-tab>Table</c-tab>
+            <c-tab>Form</c-tab>
+          </c-tab-list>
+
+          <c-tab-panels>
+            <c-tab-panel>
+              <Table />
+            </c-tab-panel>
+            <c-tab-panel>
+              <Form />
+            </c-tab-panel>
+          </c-tab-panels>
+        </c-tabs>
       </c-box>
     </c-flex>
   </div>
@@ -68,16 +38,30 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { CFlex, CBox, CText, CDivider, CButton } from '@chakra-ui/vue'
+import {
+  CTabs,
+  CTabList,
+  CTabPanels,
+  CTab,
+  CTabPanel,
+  CFlex,
+  CBox,
+} from '@chakra-ui/vue'
+import Table from '../components/panelTable.vue'
+import Form from '../components/panelForm.vue'
 
 export default Vue.extend({
   name: 'Panel',
   components: {
+    CTabs,
+    CTabList,
+    CTabPanels,
+    CTab,
+    CTabPanel,
     CFlex,
     CBox,
-    CText,
-    CDivider,
-    CButton,
+    Table,
+    Form,
   },
 })
 </script>

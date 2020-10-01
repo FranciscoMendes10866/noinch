@@ -18,14 +18,17 @@
           >Welcome back.</c-text
         >
         <c-input
+          v-model="localEmail"
           text-align="center"
           focus-border-color="csystem.strk"
           type="email"
           variant="flushed"
           placeholder="Type your email."
           size="lg"
+          @input="setLoginEmail"
         />
         <c-input
+          v-model="localPassword"
           text-align="center"
           focus-border-color="csystem.strk"
           mt="4"
@@ -33,9 +36,10 @@
           variant="flushed"
           placeholder="Type your password."
           size="lg"
+          @input="setLoginPassword"
         />
         <c-box text-align="center" mt="8">
-          <c-button bg="csystem.btn" size="lg" box-shadow="sm">
+          <c-button bg="csystem.btn" size="lg" box-shadow="sm" @click="SignIn">
             <c-text color="csystem.btx">Sign In</c-text>
           </c-button>
         </c-box>
@@ -53,6 +57,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapMutations, mapActions } from 'vuex'
 import { CFlex, CBox, CInput, CButton, CText, CLink } from '@chakra-ui/vue'
 
 export default Vue.extend({
@@ -64,6 +69,25 @@ export default Vue.extend({
     CButton,
     CText,
     CLink,
+  },
+  data: () => ({
+    localEmail: '',
+    localPassword: '',
+  }),
+  methods: {
+    ...mapMutations({
+      setLoginEmail: 'SET_LOGIN_EMAIL',
+      setLoginPassword: 'SET_LOGIN_PASSWORD',
+    }),
+    ...mapActions({
+      SignIn: 'SignIn',
+    }),
+    handleLoginEmail() {
+      this.setLoginEmail(this.localEmail)
+    },
+    handleLoginPassword() {
+      this.setLoginPassword(this.localPassword)
+    },
   },
 })
 </script>

@@ -1,11 +1,12 @@
 <template>
   <div class="wrapper">
-    <a-card title="Create a new account." style="max-width: 400px">
-      <a-input placeholder="Enter username" type="text" />
+    <a-card title="Welcome back." style="max-width: 400px">
       <a-input placeholder="Enter email" type="email" class="mt" />
       <a-input placeholder="Enter password" type="password" class="mt" />
-      <a-button type="primary" class="mt">Create account.</a-button>
-      <a-button class="mt" type="link" @click="ToLogin">Login.</a-button>
+      <a-button type="primary" class="mt">Login.</a-button>
+      <a-button class="mt" type="link" @click="ToRegister"
+        >Create account.</a-button
+      >
     </a-card>
   </div>
 </template>
@@ -15,8 +16,8 @@ import Vue from 'vue'
 
 export default Vue.extend({
   methods: {
-    ToLogin() {
-      this.$router.push('/login')
+    ToRegister() {
+      this.$router.push('/')
     },
   },
 })

@@ -58,6 +58,7 @@ export default {
           thr: '#e16162',
           hi: '#f9bc60',
           mn: '#e8e4e6',
+          pp: '#abd1c6',
         },
       },
     },

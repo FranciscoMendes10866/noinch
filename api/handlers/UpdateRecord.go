@@ -1,9 +1,6 @@
 package handlers
 
 import (
-	"encoding/hex"
-	"log"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/noinch-api/models"
 )
@@ -22,19 +19,10 @@ func UpdateRecord(c *fiber.Ctx) error {
 	c.BodyParser(record)
 	// record id
 	recordID := c.Params("id")
-	// encrypts the website password
-	key := []byte("2tHbuAi7NnEttccVY5vIZ16sil5zbfhM") // 32 bytes
-	plaintext := []byte(record.WPass)
-	ciphertext, err := Encrypt(key, plaintext)
-	if err != nil {
-		log.Fatal(err)
-	}
-	// adds the the encrypted password
-	record.WPass = hex.EncodeToString(ciphertext)
 	// Update
 	update := database.Model(&models.Manager{}).Where("id = ?", recordID).Update("w_pass", record.WPass)
 	if update == nil {
-		log.Fatal(err)
+		return c.SendStatus(400)
 	}
 	// Response
 	recRes = RecResponse{

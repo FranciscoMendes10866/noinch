@@ -1,9 +1,6 @@
 package handlers
 
 import (
-	"encoding/hex"
-	"log"
-
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
 	"github.com/noinch-api/models"
@@ -30,15 +27,6 @@ func CreateRecord(c *fiber.Ctx) error {
 	var IDtoInt int = int(tokenID)
 	// adds the user_id to the object
 	record.UserID = IDtoInt
-	// encrypts the website password
-	key := []byte("2tHbuAi7NnEttccVY5vIZ16sil5zbfhM") // 32 bytes
-	plaintext := []byte(record.WPass)
-	ciphertext, err := Encrypt(key, plaintext)
-	if err != nil {
-		log.Fatal(err)
-	}
-	// adds the the encrypted password
-	record.WPass = hex.EncodeToString(ciphertext)
 	// creates
 	create := database.Create(record)
 	if create == nil {

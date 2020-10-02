@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Table -->
     <a-table :columns="columns" :data-source="managers" bordered>
       <template slot="delete" slot-scope="text, record">
         <a-popconfirm
@@ -10,10 +11,21 @@
           <a-button type="danger" shape="circle" icon="delete" />
         </a-popconfirm>
       </template>
-      <template v-slot:edit>
-        <a-button type="primary" shape="circle" icon="edit" />
+      <template slot="edit" slot-scope="text, record">
+        <a-button
+          v-if="managers.length"
+          type="primary"
+          shape="circle"
+          icon="edit"
+          @click="showModal(record)"
+        />
       </template>
     </a-table>
+    <!-- Modal -->
+    <a-modal v-model="modalOpen" title="Update Single Record" @ok="Update">
+      <a-input v-model="singleItem.Website" />
+      <a-input v-model="singleItem.WPass" />
+    </a-modal>
   </div>
 </template>
 
@@ -53,6 +65,12 @@ export default Vue.extend({
   data: () => ({
     columns,
     managers: [],
+    modalOpen: false,
+    singleItem: {
+      ID: null,
+      Website: '',
+      WPass: '',
+    },
   }),
   mounted() {
     this.Fetch()
@@ -79,6 +97,32 @@ export default Vue.extend({
             Authorization: `Bearer ${this.$store.state.Token}`,
           },
         })
+        .then(() => this.Fetch())
+        // eslint-disable-next-line no-console
+        .catch((error: Error) => console.log(error))
+    },
+    showModal(record) {
+      this.modalOpen = true
+      this.singleItem = record
+    },
+    Update() {
+      this.modalOpen = false
+      const clientState = {
+        Website: this.singleItem.Website,
+        WPass: this.singleItem.WPass,
+      }
+      // eslint-disable-next-line no-console
+      console.log(clientState)
+      this.$axios
+        .put(
+          `http://localhost:4444/api/v1/manager/${this.singleItem.ID}`,
+          clientState,
+          {
+            headers: {
+              Authorization: `Bearer ${this.$store.state.Token}`,
+            },
+          }
+        )
         .then(() => this.Fetch())
         // eslint-disable-next-line no-console
         .catch((error: Error) => console.log(error))

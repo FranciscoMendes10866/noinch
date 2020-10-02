@@ -1,5 +1,7 @@
 # client
 
+Nuxt + TypeScript + Ant Design + Go
+
 ## Build Setup
 
 ```bash

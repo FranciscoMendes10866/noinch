@@ -1,10 +1,29 @@
 <template>
   <div class="wrapper">
     <a-card title="Create a new account." style="max-width: 400px">
-      <a-input placeholder="Enter username" type="text" />
-      <a-input placeholder="Enter email" type="email" class="mt" />
-      <a-input placeholder="Enter password" type="password" class="mt" />
-      <a-button type="primary" class="mt">Create account.</a-button>
+      <a-input
+        v-model="localUsername"
+        placeholder="Enter username"
+        type="text"
+        @input="handleRegisterUsername"
+      />
+      <a-input
+        v-model="localEmail"
+        placeholder="Enter email"
+        type="email"
+        class="mt"
+        @input="handleRegisterEmail"
+      />
+      <a-input
+        v-model="localPassword"
+        placeholder="Enter password"
+        type="password"
+        class="mt"
+        @input="handleRegisterPassword"
+      />
+      <a-button type="primary" class="mt" @click="SignUp"
+        >Create account.</a-button
+      >
       <a-button class="mt" type="link" @click="ToLogin">Login.</a-button>
     </a-card>
   </div>
@@ -12,11 +31,34 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapMutations, mapActions } from 'vuex'
 
 export default Vue.extend({
+  data: () => ({
+    localEmail: '',
+    localPassword: '',
+    localUsername: '',
+  }),
   methods: {
     ToLogin() {
       this.$router.push('/login')
+    },
+    ...mapMutations({
+      setRegisterEmail: 'SET_REGISTER_EMAIL',
+      setRegisterPassword: 'SET_REGISTER_PASSWORD',
+      setRegisterUsername: 'SET_REGISTER_USERNAME',
+    }),
+    ...mapActions({
+      SignUp: 'SignUp',
+    }),
+    handleRegisterEmail() {
+      this.setRegisterEmail(this.localEmail)
+    },
+    handleRegisterPassword() {
+      this.setRegisterPassword(this.localPassword)
+    },
+    handleRegisterUsername() {
+      this.setRegisterUsername(this.localUsername)
     },
   },
 })

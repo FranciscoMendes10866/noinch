@@ -6,7 +6,7 @@
           <c-table />
         </a-tab-pane>
         <a-tab-pane key="2" tab="Form" force-render>
-          Content of Tab Pane 2
+          <c-form />
         </a-tab-pane>
       </a-tabs>
     </a-card>
@@ -19,6 +19,7 @@ import Vue from 'vue'
 export default Vue.extend({
   components: {
     CTable: () => import('@/components/PanelTable.vue'),
+    CForm: () => import('@/components/PanelForm.vue'),
   },
 })
 </script>
@@ -32,11 +33,6 @@ export default Vue.extend({
   align-items: center;
 }
 .w {
-  min-width: 700px;
-}
-@media only screen and (max-width: 600px) {
-  .w {
-    min-width: 400px;
-  }
+  max-width: 700px;
 }
 </style>

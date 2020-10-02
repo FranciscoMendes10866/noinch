@@ -4,7 +4,7 @@
       <template slot="delete" slot-scope="text, record">
         <a-popconfirm
           v-if="managers.length"
-          title="Sure to delete?"
+          title="Are you sure?"
           @confirm="() => Delete(record)"
         >
           <a-button type="danger" shape="circle" icon="delete" />
@@ -23,13 +23,13 @@ import Vue from 'vue'
 const columns = [
   {
     title: 'Website',
-    dataIndex: 'website',
-    key: 'website',
+    dataIndex: 'Website',
+    key: 'Website',
   },
   {
     title: 'Password',
-    dataIndex: 'wpass',
-    key: 'wpass',
+    dataIndex: 'WPass',
+    key: 'WPass',
   },
   {
     title: 'Delete',
@@ -43,34 +43,45 @@ const columns = [
   },
 ]
 
-const managers = [
-  {
-    id: 1,
-    website: 'www.facebook.com',
-    wpass: 'dadsdas8767A',
-  },
-  {
-    id: 2,
-    website: 'www.youtube.com',
-    wpass: 'dsasda76UY',
-  },
-]
-
 interface Record {
-  id: number
-  website: string
-  wepass: string
+  ID: number
+  Website: string
+  WPass: string
 }
 
 export default Vue.extend({
   data: () => ({
     columns,
-    managers,
+    managers: [],
   }),
+  mounted() {
+    this.Fetch()
+  },
   methods: {
+    Fetch() {
+      this.$axios
+        .get('http://localhost:4444/api/v1/manager', {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.Token}`,
+          },
+        })
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .then((res: any) => {
+          this.managers = res.data
+        })
+        // eslint-disable-next-line no-console
+        .catch((error: Error) => console.log(error))
+    },
     Delete(record: Record) {
-      // eslint-disable-next-line no-console
-      console.log(record)
+      this.$axios
+        .delete(`http://localhost:4444/api/v1/manager/${record.ID}`, {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.Token}`,
+          },
+        })
+        .then(() => this.Fetch())
+        // eslint-disable-next-line no-console
+        .catch((error: Error) => console.log(error))
     },
   },
 })

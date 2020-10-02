@@ -111,8 +111,6 @@ export default Vue.extend({
         Website: this.singleItem.Website,
         WPass: this.singleItem.WPass,
       }
-      // eslint-disable-next-line no-console
-      console.log(clientState)
       this.$axios
         .put(
           `http://localhost:4444/api/v1/manager/${this.singleItem.ID}`,

@@ -11,7 +11,8 @@ func UpdateRecord(c *fiber.Ctx) error {
 	InitDatabase()
 	// record type
 	type RecResponse struct {
-		WPass string
+		Website string
+		WPass   string
 	}
 	var recRes RecResponse
 	// gets the manger model
@@ -20,13 +21,18 @@ func UpdateRecord(c *fiber.Ctx) error {
 	// record id
 	recordID := c.Params("id")
 	// Update
-	update := database.Model(&models.Manager{}).Where("id = ?", recordID).Update("w_pass", record.WPass)
-	if update == nil {
+	updatePassword := database.Model(&models.Manager{}).Where("id = ?", recordID).Update("w_pass", record.WPass)
+	if updatePassword == nil {
+		return c.SendStatus(400)
+	}
+	updateWebsite := database.Model(&models.Manager{}).Where("id = ?", recordID).Update("website", record.Website)
+	if updateWebsite == nil {
 		return c.SendStatus(400)
 	}
 	// Response
 	recRes = RecResponse{
-		WPass: record.WPass,
+		Website: record.Website,
+		WPass:   record.WPass,
 	}
 	return c.JSON(recRes)
 }

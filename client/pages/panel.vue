@@ -8,6 +8,9 @@
         <a-tab-pane key="2" tab="Form" force-render>
           <c-form />
         </a-tab-pane>
+        <a-tab-pane key="4" tab="Account" force-render>
+          <c-account />
+        </a-tab-pane>
       </a-tabs>
     </a-card>
   </div>
@@ -20,6 +23,7 @@ export default Vue.extend({
   components: {
     CTable: () => import('@/components/PanelTable.vue'),
     CForm: () => import('@/components/PanelForm.vue'),
+    CAccount: () => import('@/components/PanelAccount.vue'),
   },
 })
 </script>
